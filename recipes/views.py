@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 def home(request):
     context = {'nome':'Evair'}
-    return render(request, 'recipes/home.html', context=context)
+    return render(request, 'recipes/pages/home.html', context=context)
 
 # Create your views here.
 def sobre(request):
