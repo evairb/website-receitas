@@ -11,7 +11,7 @@
       "--errors-only"
     ],
     "python.formatting.autopep8Args": ["--indent-size=4"],
-    "python.defaultInterpreterPath": "venv/bin/python",
+    // "python.defaultInterpreterPath": "venv/bin/python",
     "[python]": {
       "editor.defaultFormatter": "ms-python.python", // ms-python.python
       "editor.tabSize": 4,
@@ -19,7 +19,7 @@
       "editor.formatOnSave": true,
       "editor.formatOnType": true,
       "editor.codeActionsOnSave": {
-        "source.organizeImports": true
+        "source.organizeImports": "explicit"
       }
     },
     "[html]": {
