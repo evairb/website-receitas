@@ -7,8 +7,6 @@ def home(request):
     context = {'nome':'Evair'}
     return render(request, 'recipes/pages/home.html', context=context)
 
-# Create your views here.
-def sobre(request):
-    return HttpResponse('sobre')
-
-
+def recipe(request, id):
+    context = {'nome':'Evair'}
+    return render(request, 'recipes/pages/recipe-view.html', context=context)
