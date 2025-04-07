@@ -9,7 +9,7 @@
 
   {% include "global/partials/_messages.html" %}
   <div class="main-content container">
-    <form action="{% url 'authors:create' %}" method="POST">
+    <form action="{% url 'authors:intranet_create' %}" method="POST">
       {% csrf_token %}
 
       <div class="form-content form-content-grid">
