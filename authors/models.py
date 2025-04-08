@@ -38,21 +38,33 @@ class LocalTrabalho(models.Model):
 
 
 class InformacoePessoal(models.Model):
-    cpf = models.CharField(max_length=11, null=False, blank=False, verbose_name= 'CPF')
+    cpf = models.CharField(
+        max_length=11, null=False, blank=False, verbose_name='CPF'
+    )
     email = models.EmailField(verbose_name='E-mail', null=False, blank=False)
-    nome = models.CharField(max_length=50,null=False, blank=False, verbose_name='Nome')
-    sobrenome = models.CharField(max_length=80,null=False, blank=False, verbose_name='Sobrenome')
-    cidade = models.CharField(max_length=80,null=True, blank=True, verbose_name='Cidade')
-    pais = models.CharField(max_length=70,null=True, blank=True, verbose_name='Pais')
-    fone = models.CharField(max_length=14, null=False, blank=False) 
+    nome = models.CharField(
+        max_length=50, null=False, blank=False, verbose_name='Nome'
+    )
+    sobrenome = models.CharField(
+        max_length=80, null=False, blank=False, verbose_name='Sobrenome'
+    )
+    cidade = models.CharField(
+        max_length=80, null=True, blank=True, verbose_name='Cidade'
+    )
+    pais = models.CharField(
+        max_length=70, null=True, blank=True, verbose_name='Pais'
+    )
+    fone = models.CharField(max_length=14, null=False, blank=False)
     choice_sexo = (
         ('Feminino', 'feminino'),
         ('Masculino', 'masculino'),
         ('Intersexo', 'Intersexo'),
         ('Não-binárion', 'nao-binario'),
-        ('Prefiro não declararar', 'nao-declarado'),    
+        ('Prefiro não declararar', 'nao-declarado'),
     )
-    sexo = models.CharField(max_length=22, default=None, choices=choice_sexo, verbose_name='Gênero')
+    sexo = models.CharField(
+        max_length=22, default=None, choices=choice_sexo, verbose_name='Gênero'
+    )
     color = (
         ('Branca', 'branca'),
         ('Parda', 'parda'),
@@ -60,9 +72,15 @@ class InformacoePessoal(models.Model):
         ('Amarela', 'amarela'),
         ('Indigena', 'indigena'),
     )
-    cor = models.CharField(max_length=10, default=None, choices=color, verbose_name='Raça/Cor')
-    rg = models.CharField(max_length=9, null=False, blank=False) 
-    nome_social = models.CharField(max_length=100,null=True, blank=True, verbose_name='Nome Social')
+    cor = models.CharField(
+        max_length=10, default=None, choices=color, verbose_name='Raça/Cor'
+    )
+    rg = models.CharField(
+        max_length=9, null=False, blank=False
+    )
+    nome_social = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name='Nome Social'
+    )
     grau_escolaridade = (
         ('Ensino Fundamental', 'fundamental'),
         ('Ensino Médio', 'medio'),
@@ -70,7 +88,9 @@ class InformacoePessoal(models.Model):
         ('Mestrado', 'mestrado'),
         ('Doutorado', 'doutorado'),
     )
-    escolaridade = models.CharField(max_length=18, default=None, choices=grau_escolaridade)
+    escolaridade = models.CharField(
+        max_length=18, default=None, choices=grau_escolaridade
+    )
     vinculo_empregaticio = (
         ('Direta PMSP', 'direta-pmsp'),
         ('Organizações Sociais', 'organizacao-social'),
@@ -84,8 +104,13 @@ class InformacoePessoal(models.Model):
         max_length=20, default=None, choices=vinculo_empregaticio,
         verbose_name='Vínculo Empregatício'
     )
-    registro_funciona = models.CharField(max_length=11,null=True, blank=True, verbose_name= 'RF Registro Funcional')
-    categoria_profissiona = models.ForeignKey('CategoriaProfissional', on_delete=models.SET_NULL, null=True)
+    registro_funciona = models.CharField(
+        max_length=11, null=True, blank=True,
+        verbose_name='RF Registro Funcional'
+    )
+    categoria_profissiona = models.ForeignKey(
+        'CategoriaProfissional', on_delete=models.SET_NULL, null=True
+    )
     grupos_relatorios = (
         ('ATI T2023 R2', 'ati-t2023-r2'),
         ('BMF T2023 R2', 'bmf-t2023-r2'),
@@ -105,7 +130,9 @@ class InformacoePessoal(models.Model):
         verbose_name='Grupo Relatorio'
     )
     ramal = models.CharField(max_length=14, null=False, blank=False)
-    local_trabalho = models.ForeignKey('LocalTrabalho', on_delete=models.SET_NULL, null=True)
+    local_trabalho = models.ForeignKey(
+        'LocalTrabalho', on_delete=models.SET_NULL, null=True
+    )
 
     def __str__(self):
         return self.cpf
