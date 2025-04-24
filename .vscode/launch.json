@@ -14,7 +14,8 @@
             "django": true,
             "autoStartBrowser": false,
             "program": "${workspaceFolder}\\manage.py",
-            "python": "C:\\Users\\X329470\\Desktop\\Estudo\\djngo_inicial\\env\\Scripts\\python.exe"
+            "python": "C:\\Users\\X329470\\Desktop\\Estudo\\djngo_inicial\\env\\Scripts\\python.exe",
+            "cwd": "${workspaceFolder}"  // <- ESSA LINHA É IMPORTANTE
         }
     ]
 }

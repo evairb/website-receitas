@@ -56,6 +56,9 @@ h1,h2,h3,h4,h5,h6 {
     font-family: var(--font-headings);
 }
 
+img {
+    max-width: 100%;
+}
 .container {
     max-width: 144rem;
     margin:0 auto;
@@ -326,7 +329,9 @@ h1,h2,h3,h4,h5,h6 {
     color: var(--color-error-dark);
   }
   
-  .form-content input {
+  .form-content input,
+  .form-content textarea,
+  .form-content select {
     width: 100%;
     padding: 1rem;
     border-radius: 0.4rem;
@@ -345,6 +350,14 @@ h1,h2,h3,h4,h5,h6 {
     background: var(--color-primary-dark);
     color: var(--color-white);
   }
+
+.inline-form {
+    display: inline;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
 
 /* Messages */
 .messages-container {
@@ -418,6 +431,10 @@ margin: 1rem 0;
 /* Generic  */
 .center {
     text-align: center;
+}
+
+.left {
+    text-align: left;
 }
 
 .m-x {
