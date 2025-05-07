@@ -4,10 +4,9 @@
   {{request.user.username}}
   <a href="{% url 'authors:dashboard'%}">See your recipes</a>,
   <a href="{% url 'authors:dashboard_recipe_new'%}">create a new recipe</a>, or
-  <form action="{% url "authors:logout" %}" method="POST">
-    {% csrf_token %}
-    <button type='submit'>Click Here</button>
-  </form>
+
+  {% include 'global/partials/_form_logout.html' %}
+  <a class="authors-logout-link" href="#">click here</a> to logout.
   
 </div>
 {% endif %}
