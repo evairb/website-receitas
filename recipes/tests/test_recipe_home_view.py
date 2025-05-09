@@ -1,5 +1,5 @@
 from django.urls import reverse, resolve  # type: ignore
-from recipes import views
+from recipes.views import site
 from unittest.mock import patch
 from .test_recipe_base import RecipeTestBase
 
@@ -8,7 +8,7 @@ class RecipeHomeViewTest(RecipeTestBase):
     # Testes da HOME
     def test_recipe_home_views_function_is_correct(self):
         view = resolve(reverse('recipes:home'))
-        self.assertIs(view.func.view_class, views.RecipeListViewHome)
+        self.assertIs(view.func.view_class, site.RecipeListViewHome)
 
     def test_recipe_home_view_return_status_code_200_OK(self):
         response = self.client.get(reverse('recipes:home'))

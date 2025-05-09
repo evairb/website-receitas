@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from .base import RecipeBaseFunctionalTest
-import pytest
 from unittest.mock import patch
 
 
@@ -14,7 +13,7 @@ class RecipeHomePageTest(RecipeBaseFunctionalTest):
         self.sleep()
         self.assertIn('No recipes found here 😢', body.text)
 
-    @patch('recipes.views.PER_PAGE', new=2)
+    @patch('recipes.views.site.PER_PAGE', new=2)
     def test_recipe_search_input_can_find_correct(self):
         recipes = self.make_recipe_in_batch()
 
@@ -42,7 +41,7 @@ class RecipeHomePageTest(RecipeBaseFunctionalTest):
             self.browser.find_element(By.CLASS_NAME, 'main-content-list').text
         )
 
-    @patch('recipes.views.PER_PAGE', new=2)
+    @patch('recipes.views.site.PER_PAGE', new=2)
     def test_recipe_home_page_pagination(self):
         self.make_recipe_in_batch()
 
@@ -54,7 +53,6 @@ class RecipeHomePageTest(RecipeBaseFunctionalTest):
             By.XPATH,
             '//a[@aria-label="Go to page 2"]'
         )
-        
         page2.click()
 
         # ve que tem mais 2 receitas na pagina 2

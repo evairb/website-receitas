@@ -6,6 +6,8 @@ from tag.models import Tag
 import os
 from django.conf import settings
 from PIL import Image
+from django.db.models.functions import Concat
+from django.db.models import F, Value
 
 
 class Category(models.Model):
@@ -15,8 +17,25 @@ class Category(models.Model):
         return self.name
 
 
+class RecipeManager(models.Manager):
+    def get_published(self):
+        return self.filter(
+            is_published=True
+        ).annotate(
+            author_full_name=Concat(
+                F('author__first_name'), Value(' '),
+                F('author__last_name'), Value(' ('),
+                F('author__username'), Value(')'),
+            )
+        ) \
+            .order_by('-id') \
+            .select_related('category', 'author') \
+            .prefetch_related('tags')
+
+
 # Create your models here.
 class Recipe(models.Model):
+    objects = RecipeManager()
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
