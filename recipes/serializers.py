@@ -15,7 +15,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'description', 'author',
             'category', 'tags', 'public', 'preparation',
-            'tag_objects', 'tag_links'
+            'tag_objects', 'tag_links',
+            'preparation_time', 'preparation_time_unit', 'servings',
+            'servings_unit',
+            'preparation_steps', 'cover'
         ]
 
     public = serializers.BooleanField(
@@ -35,7 +38,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     tag_links = serializers.HyperlinkedRelatedField(
         many=True,
         source='tags',
-        view_name='recipes:recipes_api_v2_tag',
+        view_name='recipes:recipe_api_v2_tag',
         read_only=True,
     )
 
@@ -43,6 +46,12 @@ class RecipeSerializer(serializers.ModelSerializer):
         return f'{recipe.preparation_time} {recipe.preparation_time_unit}'
 
     def validate(self, attrs):
+        if self.instance is not None and attrs.get('servings') is None:
+            attrs['servings'] = self.instance.servings
+
+        if self.instance is not None and attrs.get('preparation_time') is None:
+            attrs['preparation_time'] = self.instance.preparation_time
+
         super_validate = super().validate(attrs)
         cd = attrs
         _my_errors = defaultdict(list)
